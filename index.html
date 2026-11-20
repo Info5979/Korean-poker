@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게임 점수 정산</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>게임 점수 정산</h1>
+
+    <section class="panel">
+      <h2>참가자 등록</h2>
+      <div class="input-row">
+        <input id="playerName" placeholder="참가자 이름">
+        <button id="addPlayerBtn">추가</button>
+      </div>
+      <div id="playerList" class="player-list"></div>
+
+      <label for="totalRounds">총 라운드 수</label>
+      <input id="totalRounds" type="number" min="1" max="200" value="10">
+
+      <button id="startBtn" class="primary full">게임 시작</button>
+    </section>
+
+    <section id="gameSection" class="hidden">
+      <section class="panel">
+        <div class="section-heading">
+          <h2 id="phaseTitle">1등 선택</h2>
+          <span id="progressText"></span>
+        </div>
+        <p id="phaseDescription" class="muted"></p>
+        <div id="roundArea"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <h2>전체 결과표</h2>
+          <button id="copyTableBtn" class="secondary">표 복사</button>
+        </div>
+        <div class="table-wrap">
+          <table id="resultTable"></table>
+        </div>
+        <p class="muted small">
+          입력한 내용은 표에 실시간으로 반영됩니다.
+          양수는 획득, 음수는 지불을 의미합니다.
+        </p>
+      </section>
+
+      <section id="finalResult" class="panel hidden">
+        <h2>최종 정산</h2>
+        <div id="summaryArea"></div>
+        <div id="transferArea"></div>
+        <button id="copyResultBtn" class="primary full">정산 결과 복사</button>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
