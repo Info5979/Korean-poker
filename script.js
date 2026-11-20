@@ -589,4 +589,26 @@ $("copyResultBtn").addEventListener("click", () => {
   copyText(text);
 });
 
+function resetGame() {
+  if (!confirm("진행 중인 게임과 저장된 데이터를 모두 초기화할까요?")) return;
+
+  localStorage.removeItem("gameSettlementData");
+  players = [];
+  rounds = [];
+  currentPhase = "setup";
+  currentRound = 0;
+  currentPlayer = 0;
+
+  $("playerList").innerHTML = "";
+  $("roundArea").innerHTML = "";
+  $("resultTable").innerHTML = "";
+  $("summaryArea").innerHTML = "";
+  $("transferArea").innerHTML = "";
+  $("gameSection").classList.add("hidden");
+  $("finalResult").classList.add("hidden");
+}
+
+$("resetBtn").addEventListener("click", resetGame);
+
+
 loadData();
