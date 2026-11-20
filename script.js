@@ -247,6 +247,25 @@ function renderPaymentPhase() {
     });
   });
 
+    const inputs = Array.from(document.querySelectorAll(".payment-input"));
+
+  inputs.forEach((input, idx) => {
+    input.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        const nextInput = inputs[idx + 1];
+        if (nextInput) {
+          nextInput.focus();
+          nextInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          input.blur();
+          $("nextPlayerBtn").scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+    });
+  });
+
+
   document.querySelectorAll("[data-dround]").forEach(button => {
     button.addEventListener("click", () => {
       const index = Number(button.dataset.dround);
