@@ -307,7 +307,7 @@ function validateCurrentPlayer() {
     const value = round.payments[currentPlayer];
 
     if (value === undefined || value === null || value === "") {
-      alert(`${i + 1}라운드 금액을 입력해주세요. D를 누르면 100점으로 입력됩니다.`);
+      alert(`${i + 1}라운드 금액을 입력해주세요. D를 누르면 100원으로 입력됩니다.`);
       return false;
     }
 
@@ -334,7 +334,7 @@ function renderCurrentPhase() {
   renderTable();
 }
 
-// 라운드별 실시간 점수 계산
+// 라운드별 실시간 원수 계산
 function calculateResults() {
   const totals = players.map(() => 0);
 
@@ -360,7 +360,7 @@ function calculateResults() {
   return totals;
 }
 
-// 표에 표시할 라운드별 점수
+// 표에 표시할 라운드별 원수
 function getRoundCell(round, playerIndex) {
   if (round.winner === null) {
     return { text: "미정", type: "pending" };
@@ -467,7 +467,7 @@ function renderFinalResult() {
           <strong>${escapeHTML(players[item.from])}</strong>
           →
           <strong>${escapeHTML(players[item.to])}</strong>
-          <b>${item.amount}점</b>
+          <b>${item.amount}원</b>
         </div>
       `;
     });
@@ -478,9 +478,9 @@ function renderFinalResult() {
 
   transferHTML += `
     <div class="notice">
-      총 획득: ${gain}점<br>
-      총 지불: ${loss}점<br>
-      차이: ${gain - loss}점
+      총 획득: ${gain}원<br>
+      총 지불: ${loss}원<br>
+      차이: ${gain - loss}원
       ${gain === loss ? " · 정상 정산" : " · 확인이 필요합니다"}
     </div>
   `;
@@ -594,7 +594,7 @@ $("copyResultBtn").addEventListener("click", () => {
   const totals = calculateResults();
   const transfers = makeTransfers(totals);
 
-  let text = "참가자별 최종 점수\n";
+  let text = "참가자별 최종 원수\n";
   players.forEach((name, index) => {
     text += `${name}\t${totals[index]}\n`;
   });
@@ -602,7 +602,7 @@ $("copyResultBtn").addEventListener("click", () => {
   text += "\n송금 내역\n";
 
   transfers.forEach(item => {
-    text += `${players[item.from]} → ${players[item.to]}: ${item.amount}점\n`;
+    text += `${players[item.from]} → ${players[item.to]}: ${item.amount}원\n`;
   });
 
   copyText(text);
